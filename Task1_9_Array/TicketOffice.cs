@@ -78,26 +78,29 @@ namespace Task1_9_Array
             }
         }
 
-        public ArrayList New_Tick(int b)
+        public void New_Tick(int b)
         {
-            
-            Sort_Tick.Clear();            
+            foreach (Ticket tick in Ticks)
+            {
+                if (tick.Orcode == b)
+                    tick.Booking = false;
+            }
+                   
             var Ev_Gr =
-                from Ticket tick in Ticks
+                from Ticket tick in Sort_Tick
                 where tick.Orcode != b
                 select tick;
-            Ticks.Clear();
+            
+            Sort_Tick.Clear();     
 
             foreach (Ticket tick in Ev_Gr)
             {
                 if (tick.Booking)
                 {
                     Sort_Tick.Add(tick);
-                    Ticks.Add(tick);
                 }
                     
             }
-            return Ticks;
         }
 
 

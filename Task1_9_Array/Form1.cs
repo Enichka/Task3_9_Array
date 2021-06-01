@@ -7,7 +7,7 @@ namespace Task1_9_Array
 {
     public partial class Form1 : Form
     {
-        static TicketOffice Ticks_need= new TicketOffice("Events.txt");
+        static TicketOffice Ticks= new TicketOffice("Events.txt");
         public Form1()
         {
             InitializeComponent();
@@ -15,8 +15,7 @@ namespace Task1_9_Array
                 "Кукольный театр \"Невесомость вдвоём\"", "Шоу на льду с Авербухом" };
             listBox2.Items.AddRange(events);
         }
-
-        TicketOffice Ticks = Ticks_need;
+        
 
 
 
@@ -130,9 +129,9 @@ namespace Task1_9_Array
             string info = "";
             foreach (Ticket tick in Ticks.Get_Tick())
             {
-                info += tick.Orcode + ". Мероприятие: " + tick.Event + "; дата проведения: " + tick.Date + "; " 
-                        + tick.Price + "рублей; расположение: " + tick.Location + "; ряд: " + tick.Row + "; место: "
-                        + tick.Seat;
+                info += tick.Orcode + ". Мероприятие: " + tick.Event + "; дата проведения: " + tick.Date + "; " +
+                        tick.Price + "рублей; расположение: " + tick.Location + "; ряд: " + tick.Row + "; место: " +
+                        tick.Seat;
                 if (tick.Booking)
                     info += "; Это место свободно" + Environment.NewLine;
                 else
@@ -299,7 +298,7 @@ namespace Task1_9_Array
 
             Form2 newForm = new Form2();
             newForm.label2.Text = Info_Tick_Buy(b);
-            Ticks_need.New_Tick(b);
+            Ticks.New_Tick(b);
             newForm.Show();
             this.Refresh();
         }
