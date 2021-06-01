@@ -80,12 +80,13 @@ namespace Task1_9_Array
 
         public ArrayList New_Tick(int b)
         {
-            Ticks.Clear();
+            
             Sort_Tick.Clear();            
             var Ev_Gr =
                 from Ticket tick in Ticks
                 where tick.Orcode != b
                 select tick;
+            Ticks.Clear();
 
             foreach (Ticket tick in Ev_Gr)
             {
