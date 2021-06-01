@@ -2,7 +2,6 @@
 using System.Collections;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
 
 
 namespace Task1_9_Array
@@ -22,7 +21,16 @@ namespace Task1_9_Array
             {
                 string l = f.ReadLine();
                 string[] ob = l.Split(';');
-                Ticks.Add(new Ticket(int.Parse(ob[0]), ob[1], DateTime.Parse(ob[2]), ob[3], int.Parse(ob[4]), int.Parse(ob[5]), int.Parse(ob[6]), bool.Parse(ob[7])));
+                Ticks.Add(
+                    new Ticket(
+                        int.Parse(ob[0]),
+                        ob[1],
+                        DateTime.Parse(ob[2]),
+                        ob[3],
+                        int.Parse(ob[4]),
+                        int.Parse(ob[5]),
+                        int.Parse(ob[6]),
+                        bool.Parse(ob[7])));
             }
             f.Close();
         }     
@@ -41,7 +49,9 @@ namespace Task1_9_Array
             foreach (Ticket tick in Ticks)
             {
                 if (tick.Booking)
-                    info += tick.Orcode + ". Мероприятие: " + tick.Event + "; дата проведения: " + tick.Date + "; " + tick.Price + "рублей; расположение: " + tick.Location + "; ряд: " + tick.Row + "; место: " + tick.Seat +"; Это место свободно" + Environment.NewLine;                
+                    info += tick.Orcode + ". Мероприятие: " + tick.Event + "; дата проведения: " + tick.Date + "; " +
+                            tick.Price + "рублей; расположение: " + tick.Location + "; ряд: " + tick.Row + "; место: " +
+                            tick.Seat +"; Это место свободно" + Environment.NewLine;                
             }
             return info;
         }
@@ -68,25 +78,29 @@ namespace Task1_9_Array
             }
         }
 
-        public ArrayList New_Tick(int b)
+        public void New_Tick(int b)
         {
-            Ticks.Clear();
-            Sort_Tick.Clear();            
+            foreach (Ticket tick in Ticks)
+            {
+                if (tick.Orcode == b)
+                    tick.Booking = false;
+            }
+                   
             var Ev_Gr =
-                from Ticket tick in Ticks
+                from Ticket tick in Sort_Tick
                 where tick.Orcode != b
                 select tick;
+            
+            Sort_Tick.Clear();     
 
             foreach (Ticket tick in Ev_Gr)
             {
                 if (tick.Booking)
                 {
                     Sort_Tick.Add(tick);
-                    Ticks.Add(tick);
                 }
                     
             }
-            return Ticks;
         }
 
 
@@ -183,7 +197,8 @@ namespace Task1_9_Array
             Sort_Tick.Clear();
             var All_Gr =
                 from Ticket tick in Ticks
-                where tick.Event == Ev && tick.Location == Loc && tick.Date >= Date1 && tick.Date <= Date2 && tick.Price >= Pr1 && tick.Price <= Pr2
+                where tick.Event == Ev && tick.Location == Loc && tick.Date >= Date1 && tick.Date <= Date2 && 
+                      tick.Price >= Pr1 && tick.Price <= Pr2
                 select tick;
 
             foreach (Ticket tick in All_Gr)
@@ -200,7 +215,8 @@ namespace Task1_9_Array
             Sort_Tick.Clear();
             var All_Gr =
                 from Ticket tick in Ticks
-                where tick.Event == Ev && (tick.Location == Loc1 || tick.Location == Loc2) && tick.Date >= Date1 && tick.Date <= Date2 && tick.Price >= Pr1 && tick.Price <= Pr2
+                where tick.Event == Ev && (tick.Location == Loc1 || tick.Location == Loc2) && tick.Date >= Date1 && 
+                      tick.Date <= Date2 && tick.Price >= Pr1 && tick.Price <= Pr2
                 select tick;
 
             foreach (Ticket tick in All_Gr)
@@ -217,7 +233,8 @@ namespace Task1_9_Array
             Sort_Tick.Clear();
             var All_Gr =
                 from Ticket tick in Ticks
-                where tick.Event == Ev  && tick.Date >= Date1 && tick.Date <= Date2 && tick.Price >= Pr1 && tick.Price <= Pr2
+                where tick.Event == Ev  && tick.Date >= Date1 && tick.Date <= Date2 && tick.Price >= Pr1 && 
+                      tick.Price <= Pr2
                 select tick;
 
             foreach (Ticket tick in All_Gr)
