@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Collections;
-using System.IO;
-using System.Linq;
 
 
 
@@ -14,7 +11,8 @@ namespace Task1_9_Array
         public Form1()
         {
             InitializeComponent();
-            string[] events = { "Филармония", "Выступление танцевально-спортивного клуба \"Pulse\"", "Цирк Гии Эрадзе", "Кукольный театр \"Невесомость вдвоём\"", "Шоу на льду с Авербухом" };
+            string[] events = { "Филармония", "Выступление танцевально-спортивного клуба \"Pulse\"", "Цирк Гии Эрадзе",
+                "Кукольный театр \"Невесомость вдвоём\"", "Шоу на льду с Авербухом" };
             listBox2.Items.AddRange(events);
         }
 
@@ -49,7 +47,9 @@ namespace Task1_9_Array
             string info = "";
             foreach (Ticket tick in Ticks.Get_Sort())
             {
-                info += tick.Orcode + ". Мероприятие: " + tick.Event + "; дата проведения: " + tick.Date + "; " + tick.Price + "рублей; расположение: " + tick.Location + "; ряд: " + tick.Row + "; место: " + tick.Seat + "; Это место свободно" + Environment.NewLine;
+                info += tick.Orcode + ". Мероприятие: " + tick.Event + "; дата проведения: " + tick.Date + "; " +
+                        tick.Price + "рублей; расположение: " + tick.Location + "; ряд: " + tick.Row + "; место: " +
+                        tick.Seat + "; Это место свободно" + Environment.NewLine;
             }
             return info;
         }
@@ -60,7 +60,8 @@ namespace Task1_9_Array
             foreach (Ticket tick in Ticks.Get_Tick())
             {
                 if (tick.Orcode == co)
-                    info += "Мероприятие: " + tick.Event + "; дата проведения: " + tick.Date + "; " + tick.Price + "рублей; расположение: " + tick.Location + "; ряд: " + tick.Row + "; место: " + tick.Seat;
+                    info += "Мероприятие: " + tick.Event + "; дата проведения: " + tick.Date + "; " + tick.Price + 
+                            "рублей; расположение: " + tick.Location + "; ряд: " + tick.Row + "; место: " + tick.Seat;
             }
             return info;
         }
@@ -129,7 +130,9 @@ namespace Task1_9_Array
             string info = "";
             foreach (Ticket tick in Ticks.Get_Tick())
             {
-                info += tick.Orcode + ". Мероприятие: " + tick.Event + "; дата проведения: " + tick.Date + "; " + tick.Price + "рублей; расположение: " + tick.Location + "; ряд: " + tick.Row + "; место: " + tick.Seat;
+                info += tick.Orcode + ". Мероприятие: " + tick.Event + "; дата проведения: " + tick.Date + "; " 
+                        + tick.Price + "рублей; расположение: " + tick.Location + "; ряд: " + tick.Row + "; место: "
+                        + tick.Seat;
                 if (tick.Booking)
                     info += "; Это место свободно" + Environment.NewLine;
                 else
@@ -145,21 +148,46 @@ namespace Task1_9_Array
                 if (checkBox2.Checked)
                 {
                     if (checkBox3.Checked)
-                        Ticks.Group_All_without_Loc(listBox2.Text.ToString(), dateTimePicker1.Value, dateTimePicker2.Value, Convert.ToInt32(textBox4.Text), Convert.ToInt32(textBox5.Text));
+                        Ticks.Group_All_without_Loc(
+                            listBox2.Text.ToString(),
+                            dateTimePicker1.Value,
+                            dateTimePicker2.Value,
+                            Convert.ToInt32(textBox4.Text), 
+                            Convert.ToInt32(textBox5.Text));
                     else
                     {
-                        Ticks.Group_All_2(listBox2.Text.ToString(), "Партер", "Бельэтаж", dateTimePicker1.Value, dateTimePicker2.Value, Convert.ToInt32(textBox4.Text), Convert.ToInt32(textBox5.Text));                        
+                        Ticks.Group_All_2(
+                            listBox2.Text.ToString(),
+                            "Партер",
+                            "Бельэтаж",
+                            dateTimePicker1.Value,
+                            dateTimePicker2.Value,
+                            Convert.ToInt32(textBox4.Text),
+                            Convert.ToInt32(textBox5.Text));                        
                     }
                 }
                 else
                 {
                     if (checkBox3.Checked)
                     {
-                        Ticks.Group_All_2(listBox2.Text.ToString(), "Партер", "Балкон", dateTimePicker1.Value, dateTimePicker2.Value, Convert.ToInt32(textBox4.Text), Convert.ToInt32(textBox5.Text));                  
+                        Ticks.Group_All_2(
+                            listBox2.Text.ToString(),
+                            "Партер",
+                            "Балкон",
+                            dateTimePicker1.Value,
+                            dateTimePicker2.Value,
+                            Convert.ToInt32(textBox4.Text),
+                            Convert.ToInt32(textBox5.Text));                  
                     }
                     else
                     {
-                        Ticks.Group_All_1(listBox2.Text.ToString(), "Партер", dateTimePicker1.Value, dateTimePicker2.Value, Convert.ToInt32(textBox4.Text), Convert.ToInt32(textBox5.Text));
+                        Ticks.Group_All_1(
+                            listBox2.Text.ToString(),
+                            "Партер",
+                            dateTimePicker1.Value,
+                            dateTimePicker2.Value,
+                            Convert.ToInt32(textBox4.Text),
+                            Convert.ToInt32(textBox5.Text));
                     }
                 }
             }
@@ -169,18 +197,37 @@ namespace Task1_9_Array
                 {
                     if (checkBox3.Checked)
                     {
-                        Ticks.Group_All_2(listBox2.Text.ToString(), "Бельэтаж", "Балкон", dateTimePicker1.Value, dateTimePicker2.Value, Convert.ToInt32(textBox4.Text), Convert.ToInt32(textBox5.Text));
+                        Ticks.Group_All_2(
+                            listBox2.Text.ToString(),
+                            "Бельэтаж",
+                            "Балкон",
+                            dateTimePicker1.Value,
+                            dateTimePicker2.Value,
+                            Convert.ToInt32(textBox4.Text),
+                            Convert.ToInt32(textBox5.Text));
                     }
                     else
                     {
-                        Ticks.Group_All_1(listBox2.Text.ToString(), "Бельэтаж", dateTimePicker1.Value, dateTimePicker2.Value, Convert.ToInt32(textBox4.Text), Convert.ToInt32(textBox5.Text));
+                        Ticks.Group_All_1(
+                            listBox2.Text.ToString(),
+                            "Бельэтаж",
+                            dateTimePicker1.Value,
+                            dateTimePicker2.Value,
+                            Convert.ToInt32(textBox4.Text),
+                            Convert.ToInt32(textBox5.Text));
                     }
                 }
                 else
                 {
                     if (checkBox3.Checked)
                     {
-                        Ticks.Group_All_1(listBox2.Text.ToString(), "Балкон", dateTimePicker1.Value, dateTimePicker2.Value, Convert.ToInt32(textBox4.Text), Convert.ToInt32(textBox5.Text));
+                        Ticks.Group_All_1(
+                            listBox2.Text.ToString(),
+                            "Балкон",
+                            dateTimePicker1.Value,
+                            dateTimePicker2.Value,
+                            Convert.ToInt32(textBox4.Text),
+                            Convert.ToInt32(textBox5.Text));
                     }
                     else
                     {
